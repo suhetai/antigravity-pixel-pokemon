@@ -11,4 +11,5 @@ if ! command -v node >/dev/null 2>&1; then
   fi
 fi
 
-exec node server.mjs
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+exec node "$SCRIPT_DIR/server.mjs"

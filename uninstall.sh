@@ -24,6 +24,11 @@ if [ -n "$LS_PID" ]; then
       -H "x-codeium-csrf-token: ${CSRF_TOKEN}" \
       -d '{"sidecarId":"pixel-pokemon-widget/pokemon","action":"SIDECAR_ACTION_DISABLE"}' >/dev/null 2>&1 || true
 
+    curl -sS -X POST "http://127.0.0.1:${LS_PORT}/exa.language_server_pb.LanguageServerService/ManageSidecar" \
+      -H "Content-Type: application/json" \
+      -H "x-codeium-csrf-token: ${CSRF_TOKEN}" \
+      -d '{"sidecarId":"pixel-pokemon-widget/pokemon","action":"SIDECAR_ACTION_STOP"}' >/dev/null 2>&1 || true
+
     curl -sS -X POST "http://127.0.0.1:${LS_PORT}/exa.language_server_pb.LanguageServerService/JetboxWriteState" \
       -H "Content-Type: application/json" \
       -H "x-codeium-csrf-token: ${CSRF_TOKEN}" \
@@ -32,7 +37,12 @@ if [ -n "$LS_PID" ]; then
 fi
 
 # 2. 清理独立守护进程（如有）
-pkill -f "pixel-pokemon-widget/sidecars/pokemon/server.mjs" 2>/dev/null || true
+PID_FILE="$HOME/.gemini/antigravity/sidecar_data/pixel-pokemon-widget/pokemon/data/daemon.pid"
+if [ -f "$PID_FILE" ]; then
+  kill -9 "$(cat "$PID_FILE")" 2>/dev/null || true
+  rm -f "$PID_FILE"
+fi
+pkill -9 -f "pixel-pokemon-widget/sidecars/pokemon/server.mjs" 2>/dev/null || true
 
 # 3. 实时清理已打开窗口中的 DOM 节点与事件监听
 export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.nvm/versions/node/$(ls "$HOME/.nvm/versions/node" 2>/dev/null | tail -n 1)/bin:$HOME/.volta/bin:$HOME/.fnm/current/bin:$PATH"
@@ -56,16 +66,16 @@ if command -v node >/dev/null 2>&1; then
       if (!port) return;
       const res = await fetch(`http://127.0.0.1:${port}/json`);
       const targets = await res.json();
-      const cleanupJs = `
+      const cleanupJs = `(() => {
         if (window.__AGY_POKEMON_TIMER__) clearInterval(window.__AGY_POKEMON_TIMER__);
         if (window.__AGY_POKEMON_CLEANUP_EVENTS__) { try { window.__AGY_POKEMON_CLEANUP_EVENTS__(); } catch (e) {} }
         window.__AGY_POKEMON_WIDGET_VERSION__ = null;
-        const getById = (document.__agyOrigGetElementById || document.getElementById).bind(document);
-        ["agy-sidebar-pokemon-widget","agy-pokemon-gallery-modal","agy-pokemon-widget-styles"].forEach(id => {
-          const el = getById(id);
+        var g = (document.__agyOrigGetElementById || document.getElementById).bind(document);
+        ["agy-sidebar-pokemon-widget","agy-pokemon-gallery-modal","agy-pokemon-widget-styles"].forEach(function(id) {
+          var el = g(id);
           if (el) el.remove();
         });
-      `;
+      })()`;
       for (const t of targets.filter(x => x.type === "page" && x.webSocketDebuggerUrl && !x.url.startsWith("devtools://"))) {
         await new Promise((resolve) => {
           const ws = new WebSocket(t.webSocketDebuggerUrl);
