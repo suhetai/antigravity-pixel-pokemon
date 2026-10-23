@@ -1,0 +1,12 @@
+{
+  "name": "pixel-pokemon-widget",
+  "displayName": "Pixel Pokémon Companion",
+  "version": "1.0.0",
+  "description": "每次打开或唤出 Antigravity 窗口时，在左下角自动展示来自 Tenor (pixel-pokemon-gifs) 的随机像素宝可梦 GIF 动图，支持点击换宠、纯享桌宠模式与图鉴画廊。",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "帮我换一只随机的像素宝可梦动图",
+    "打开像素宝可梦 GIF 图鉴面板",
+    "从 Tenor 刷新最新的像素宝可梦动图列表"
+  ]
+}

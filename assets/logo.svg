@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" shape-rendering="crispEdges">
+  <rect width="128" height="128" fill="none"/>
+  <!-- Outer black pixel border -->
+  <rect x="40" y="16" width="48" height="8" fill="#1e293b"/>
+  <rect x="24" y="24" width="16" height="8" fill="#1e293b"/>
+  <rect x="88" y="24" width="16" height="8" fill="#1e293b"/>
+  <rect x="16" y="32" width="8" height="16" fill="#1e293b"/>
+  <rect x="104" y="32" width="8" height="16" fill="#1e293b"/>
+  <rect x="16" y="48" width="8" height="32" fill="#1e293b"/>
+  <rect x="104" y="48" width="8" height="32" fill="#1e293b"/>
+  <rect x="16" y="80" width="8" height="16" fill="#1e293b"/>
+  <rect x="104" y="80" width="8" height="16" fill="#1e293b"/>
+  <rect x="24" y="96" width="16" height="8" fill="#1e293b"/>
+  <rect x="88" y="96" width="16" height="8" fill="#1e293b"/>
+  <rect x="40" y="104" width="48" height="8" fill="#1e293b"/>
+  <!-- Top red half -->
+  <rect x="40" y="24" width="48" height="8" fill="#ef4444"/>
+  <rect x="24" y="32" width="80" height="16" fill="#ef4444"/>
+  <rect x="24" y="48" width="80" height="12" fill="#dc2626"/>
+  <!-- Top highlight -->
+  <rect x="32" y="32" width="16" height="8" fill="#fca5a5"/>
+  <rect x="32" y="40" width="8" height="8" fill="#fca5a5"/>
+  <!-- Bottom white half -->
+  <rect x="24" y="68" width="80" height="12" fill="#f8fafc"/>
+  <rect x="24" y="80" width="80" height="16" fill="#e2e8f0"/>
+  <rect x="40" y="96" width="48" height="8" fill="#cbd5e1"/>
+  <!-- Center black band -->
+  <rect x="24" y="56" width="80" height="12" fill="#1e293b"/>
+  <!-- Center button -->
+  <rect x="48" y="48" width="32" height="32" fill="#1e293b"/>
+  <rect x="56" y="56" width="16" height="16" fill="#f8fafc"/>
+  <rect x="60" y="60" width="8" height="8" fill="#38bdf8"/>
+</svg>

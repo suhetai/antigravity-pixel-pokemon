@@ -1,0 +1,18 @@
+{
+  "display_name": "Pixel Pokémon Companion",
+  "description": "每次打开或唤出窗口时，在左下角 Settings 按钮上方随机展示 Tenor 像素宝可梦 GIF 动图。",
+  "command": "/bin/sh",
+  "args": ["run.sh"],
+  "restart_policy": "always",
+  "has_web_ui": true,
+  "ui_config": {
+    "display_name": "Pixel Pokémon Companion",
+    "views": [
+      {
+        "entrypoint": "SIDECAR_UI_ENTRYPOINT_AUX_PANE",
+        "path": "/",
+        "title": "像素宝可梦图鉴"
+      }
+    ]
+  }
+}
